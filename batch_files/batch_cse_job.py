@@ -5,7 +5,7 @@ sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
 
 def exec_batch():
-  refer_file = 'top_notices/t_notice_cse_job.txt'
+  refer_file = 'webcat/top_notices/t_notice_cse_job.txt'
   slack_channel = '컴퓨터공학과_취업공지'
   detecting_website = 'https://scc.sogang.ac.kr/front/cmsboardlist.do?siteId=cs&bbsConfigFK=1748'
   detecting_html_tree = 'div.list_box > ul > li > div > a.title' 
