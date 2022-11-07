@@ -14,8 +14,9 @@ def crawl_site(refer_file, slack_channel, detecting_website, detecting_html_tree
     userAgent = ua.random
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument(f'user-agent={userAgent}')
-    chrome_options.add_argument('--remote-debugging-port=9222')
+    # chrome_options.add_argument('--remote-debugging-port=9222')
 
     driver = webdriver.Chrome(executable_path=Chromedriver_path, options=chrome_options)
 
