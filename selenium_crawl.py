@@ -7,8 +7,9 @@ from dotenv import load_dotenv
 load_dotenv()
 Chromedriver_path = os.environ.get('WEBDRIVER_PATH')
 
+
 def crawl_site(refer_file, slack_channel, detecting_website, detecting_html_tree, domain):
-    #Selenium options
+    # Selenium options
     chrome_options = webdriver.ChromeOptions()
     ua = UserAgent()
     userAgent = ua.random
@@ -18,17 +19,18 @@ def crawl_site(refer_file, slack_channel, detecting_website, detecting_html_tree
     chrome_options.add_argument(f'user-agent={userAgent}')
     # chrome_options.add_argument('--remote-debugging-port=9222')
 
-    driver = webdriver.Chrome(executable_path=Chromedriver_path, options=chrome_options)
+    driver = webdriver.Chrome(
+        executable_path=Chromedriver_path, options=chrome_options)
 
-    ##3초 기다림
+    # 3초 기다림
     driver.implicitly_wait(3)
     driver.get(detecting_website)
 
-    ## 페이지의 elements 모두 가져오기
-    html = driver.page_source 
+    # 페이지의 elements 모두 가져오기
+    html = driver.page_source
     driver.quit()
 
-    ## BeautifulSoup 적용, html parsing
+    # BeautifulSoup 적용, html parsing
     soup = BeautifulSoup(html, 'html.parser')
 
     # 가장 위 공지 불러오기
@@ -42,7 +44,7 @@ def crawl_site(refer_file, slack_channel, detecting_website, detecting_html_tree
             link = domain+latest_notice_html['href']
             import slack_api
             slack_api.catch_change(slack_channel, latest_notice, link)
-            #파일에 저장
+            # 파일에 저장
             with open(refer_file, 'w') as f_write:
                 f_write.write(latest_notice)
                 f_write.close()
