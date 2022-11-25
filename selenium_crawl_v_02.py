@@ -1,3 +1,8 @@
+"""
+Selenium_crawl_v_02
+v_01에서 TOP 공지만 긁어올 수 있었던 기존 알고리즘 개선
+"""
+
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
@@ -54,7 +59,7 @@ def crawl_all_notices_firstpage(refer_file, slack_channel, detecting_website, no
 
         # 변화 감지 시
         if notices[-1]['title'] != origin_last_line.strip():
-            # 새로 받아온 공지 한 줄씩 읽으면서 기존 파일과 비교(진행중)
+            # 새로 받아온 공지 한 줄씩 읽으면서 기존 파일과 비교
             with open(refer_file, 'r') as f_read:
                 # 새 공지인지 여부 flag
                 is_new_notice = False
