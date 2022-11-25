@@ -49,35 +49,29 @@ def crawl_all_notices_firstpage(refer_file, slack_channel, detecting_website, no
 
     # notice board 공지 모두 가져와서 notices list에 dictionary 형태로 저장
     notice_list_html = soup.select_one(notice_board_html_tree)
+    print(notice_list_html)
     # 새로 가져온 공지들
     notices = []
     for a in notice_list_html.select(each_notice_html_tree):
-        dic = {'title': a.span.text, 'link': a['href']}
+        dic = {'title': a.span.text.rstrip(), 'link': a['href'].rstrip()}
         notices.append(dic)
+
     # 기존 파일 읽어와서 변화 감지
     with open(refer_file, 'r') as f_read:
-
         # 기존 파일 old_notices에 dictionary 형태로 저장
         old_notices = []
         for line in f_read:
-            old_dic = {'title': line.rstrip(
-            ), 'link': f_read.readline().rstrip()}
+            old_dic = {'title': line.rstrip(), 'link': f_read.readline().rstrip()}
             old_notices.append(old_dic)
         f_read.close()
 
-        # 변화 감지
-        # 같은 공진데 도중에 다른 공지라고 인식하는 이슈 존재
+        # O(n)으로 한 줄씩 내려가면서 변화 감지
         changed = False
         for notice, old_notice in zip(notices, old_notices):
-            # print(notice['title'])
-            # print(old_notice['title'])
-            # print(notice['title'] == old_notice['title'])
             if (notice['title'] != old_notice['title']):
-                print(notice['title'])
-                print(old_notice['title'])
                 changed = True
 
-        # 변화 감지 시
+        # 변화 감지 시 
         if changed==True:
             for notice in notices:
                 updated=True
@@ -86,8 +80,8 @@ def crawl_all_notices_firstpage(refer_file, slack_channel, detecting_website, no
                         updated=False
                         break
                 # 새 공지와 일치하는 기존 공지가 없을 경우 메시지 전송
-                if updated==True:
-                    send_msg(slack_channel, notice['title'], domain+notice['link'])
+                # if updated==True:
+                #     send_msg(slack_channel, notice['title'], domain+notice['link'])
 
             # 파일에 새로 받아온 공지들 모두 저장
             with open(refer_file, 'w') as f_write:
