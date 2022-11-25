@@ -1,4 +1,4 @@
-import selenium_crawl_v_02
+import selenium_crawl_v_03
 import sys
 import os
 
@@ -9,5 +9,5 @@ notice_board_html_tree = 'div.grid.bbs-list.tr-hover'
 each_notice_html_tree = 'div.subject > a'
 domain = 'https://www.sogang.ac.kr'
 
-selenium_crawl_v_02.crawl_all_notices_firstpage(
+selenium_crawl_v_03.crawl_all_notices_firstpage(
     refer_file, slack_channel, detecting_website, notice_board_html_tree, each_notice_html_tree, domain)
