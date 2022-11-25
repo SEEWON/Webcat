@@ -49,7 +49,6 @@ def crawl_all_notices_firstpage(refer_file, slack_channel, detecting_website, no
 
     # notice board 공지 모두 가져와서 notices list에 dictionary 형태로 저장
     notice_list_html = soup.select_one(notice_board_html_tree)
-    print(notice_list_html)
     # 새로 가져온 공지들
     notices = []
     for a in notice_list_html.select(each_notice_html_tree):
@@ -67,7 +66,13 @@ def crawl_all_notices_firstpage(refer_file, slack_channel, detecting_website, no
 
         # O(n)으로 한 줄씩 내려가면서 변화 감지
         changed = False
-        for notice, old_notice in zip(notices, old_notices):
+        for i, (notice, old_notice) in enumerate(zip(notices, old_notices)):
+            # 게시글 삭제되기만 한 경우 예외 처리
+            # 중간 게시글 삭제 시 notice board 끝에 이전 공지 끌올 
+            # 끝 2개 정도는 검사 제외
+            # 추후 공지 날짜 확인 등 로직으로 개선
+            if 2 >= len(notices)-i:
+               continue 
             if (notice['title'] != old_notice['title']):
                 changed = True
 
@@ -80,8 +85,8 @@ def crawl_all_notices_firstpage(refer_file, slack_channel, detecting_website, no
                         updated=False
                         break
                 # 새 공지와 일치하는 기존 공지가 없을 경우 메시지 전송
-                # if updated==True:
-                #     send_msg(slack_channel, notice['title'], domain+notice['link'])
+                if updated==True:
+                    send_msg(slack_channel, notice['title'], domain+notice['link'])
 
             # 파일에 새로 받아온 공지들 모두 저장
             with open(refer_file, 'w') as f_write:
