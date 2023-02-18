@@ -12,8 +12,8 @@ from dotenv import load_dotenv
 import slack_api
 
 #################### Detecting Site에 따른 변경부 ####################
-slack_channel = "dev-feature"
-detecting_website = "http://www.sogang.ac.kr/front/boardlist.do?bbsConfigFK=2"
+slack_channel = "a-일반공지"
+detecting_website = "http://www.sogang.ac.kr/front/boardlist.do?bbsConfigFK=1"
 detecting_interval = 60
 
 xpath_list = []

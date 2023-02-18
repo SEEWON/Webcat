@@ -24,9 +24,9 @@ def notify_change_detected(channel, contents, link):
 
 # 봇 시작 시 Slack 알림
 def notify_started(channel):
-    post_message("log-working", f"{channel} detector가 시작되었어요.")
+    post_message("zz-log-working", f"{channel} detector가 시작되었어요.")
 
 
 # 봇 종료 시 Slack 알림
 def notify_terminated(channel):
-    post_message("log-working", f"{channel} detector가 종료되었어요.")
+    post_message("zz-log-working", f"{channel} detector가 종료되었어요.")
