@@ -57,7 +57,7 @@ new_notices = []
 
 # 오늘 등록된 공지만 crawl
 def crawl_today_notices():
-    new_notices = []
+    new_notices.clear()
     for each_xpath in xpath_list:
         notice_date = driver.find_element(By.XPATH, each_xpath["registered_date"]).text
         if notice_date == date_today:

@@ -1,5 +1,5 @@
 FROM python:3.8.10-slim
-WORKDIR /academic
+WORKDIR /a_academic
 
 # 컨테이너에 크롬 설치
 RUN apt-get update \
