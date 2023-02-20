@@ -79,7 +79,7 @@ def detect_changed_notices():
 
 # Initialize: update old_notices at Script execution point
 crawl_today_notices()
-old_notices = new_notices
+old_notices = new_notices.copy()
 
 try:
     slack_api.notify_started(slack_channel)
@@ -93,7 +93,7 @@ try:
         detect_changed_notices()
 
         # 저장하고 있던 공지 업데이트
-        old_notices = new_notices
+        old_notices = new_notices.copy()
 
         # 1분 후 다시 실행
         time.sleep(detecting_interval)
