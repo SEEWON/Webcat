@@ -97,6 +97,7 @@ try:
 
         # 1분 후 다시 실행
         time.sleep(detecting_interval)
+        driver.refresh()
 
 finally:
     driver.quit()
