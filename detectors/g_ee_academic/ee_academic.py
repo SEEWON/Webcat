@@ -96,8 +96,9 @@ try:
         old_notices = new_notices.copy()
 
         # 1분 후 다시 실행
-        time.sleep(detecting_interval)
+        time.sleep(detecting_interval - 3)
         driver.refresh()
+        time.sleep(3)
 
 finally:
     driver.quit()
