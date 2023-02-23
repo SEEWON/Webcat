@@ -15,3 +15,5 @@ sleep 2
 cd /home/seewon/Webcat/detectors/h_econ_general && docker build -t seewon/webcat-h-econ-general . && docker push seewon/webcat-h-econ-general &
 sleep 2
 cd /home/seewon/Webcat/detectors/i_biz_academic && docker build -t seewon/webcat-i-biz-academic . && docker push seewon/webcat-i-biz-academic &
+sleep 2
+cd /home/seewon/Webcat/detectors/k_gradschool && docker build -t seewon/webcat-k-gradschool . && docker push seewon/webcat-k-gradschool &
