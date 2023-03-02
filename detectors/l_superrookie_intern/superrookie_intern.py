@@ -4,7 +4,6 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
 from fake_useragent import UserAgent
-import datetime
 import time
 
 from dotenv import load_dotenv
@@ -13,8 +12,7 @@ import slack_api
 
 #! 슈퍼루키의 경우, 공고가 올라온 날짜 정보가 표시되지 않으므로 아래 #!로 표시된 로직 변경
 #################### Detecting Site에 따른 변경부 ####################
-# slack_channel = "l-슈퍼루키-인턴공고"
-slack_channel = "zz-dev-feature"
+slack_channel = "l-슈퍼루키-인턴공고"
 detecting_website = (
     "https://www.superookie.com/jobs?job_level%5B%5D=579f18168b129f673b4efebe"
 )
@@ -46,8 +44,8 @@ driver = webdriver.Chrome(
     service=Service(ChromeDriverManager().install()), options=chrome_options
 )
 
-# 3초 기다림
-driver.implicitly_wait(3)
+# 8초 기다림
+driver.implicitly_wait(8)
 driver.get(detecting_website)
 
 # Initialize: Use gloabl variable
@@ -98,8 +96,9 @@ try:
         old_notices = new_notices.copy()
 
         # 1분 후 다시 실행
-        time.sleep(detecting_interval)
+        time.sleep(detecting_interval - 8)
         driver.refresh()
+        time.sleep(8)
 
 finally:
     driver.quit()
