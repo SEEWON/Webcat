@@ -1,8 +1,13 @@
 # Webcat - 서강대 전 공지 수신기
 서강대학교 공식 홈페이지에 새로운 공지사항이 등록되면, 1분 안에 알려주는 Slack 봇입니다.
 
+2022년 11월부터 2023년 10월까지 **1년간 운영**했습니다.
 
-웹캣은 [AWS](https://aws.amazon.com/pm/ec2/)의 EC2 인스턴스, [GCP](https://cloud.google.com/)의 VM 인스턴스를 거쳐 현재는 개인 물리 서버에서 운영 중입니다. <br>
+2023년 11월 온프레미스 서버 가동을 중지함에 따라 **운영을 중단**했고, 종료일 기준 137명의 활성 유저가 있었습니다.
+
+
+---
+웹캣은 [AWS](https://aws.amazon.com/pm/ec2/)의 EC2 인스턴스, [GCP](https://cloud.google.com/)의 VM 인스턴스를 거쳐 현재는 개인 온프레미스 서버에서 운영 중입니다. <br>
 [Docker](https://www.docker.com/) 컨테이너 기반으로 동작하며, [Python](https://www.python.org/)과 [Selenium](https://www.selenium.dev/), [Chrome](https://www.google.co.kr/chrome)으로 이루어져 있습니다.
 
 
@@ -20,4 +25,4 @@
 - [슈퍼루키(채용 플랫폼) 인턴 채용공고](https://www.superookie.com/jobs?job_level%5B%5D=579f18168b129f673b4efebe)
 
 ---
-![image](https://github.com/SEEWON/Webcat/assets/50395394/0765f078-086d-4cf4-847a-b7d5bb922893)
+![webcat](https://github.com/SEEWON/Webcat/assets/50395394/98ed98d7-1f79-4b89-906c-86c91b8b34fe)
